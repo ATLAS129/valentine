@@ -1,0 +1,104 @@
+:root {
+  --main-bg-color: rgba(185, 74, 232, 0.9);
+  --main-font-color: #540051;
+  --secondary-font-color: #9c0296;
+  --main-button-color: #f7aca6;
+
+  --second-main-bg-color: #f7aca6;
+  --second-main-box-color: #fc9890;
+  --second-main-button-color: #c45ebf;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 1px;
+  font-family: "Playwrite NZ Basic", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  overflow: hidden;
+  /* transition: 0.5s all ease-out; */
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40vw;
+  height: 30vw;
+  padding: 1rem 0;
+  /* background-color: var(--main-bg-color); */
+  border-radius: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* .box-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40vw;
+  height: 30vw;
+  padding: 2rem 0;
+  background-color: var(--second-main-box-color);
+  border-radius: 1rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+
+.img-taylor {
+  width: 50%;
+  height: 50%;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.valentine {
+  font-family: "Dancing Script", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--main-font-color);
+  font-size: 2rem;
+}
+
+.continue {
+  color: #fff;
+  font-size: 200%;
+  width: 80%;
+  height: 20%;
+  background-color: var(--main-button-color);
+  border: none;
+  outline: none;
+
+  transition:
+    transform 600ms ease,
+    border-radius 600ms ease;
+  will-change: transform;
+}
+
+.continue:hover {
+  transition: 1.5s all;
+  transform: scale(1.05);
+}
+
+@media screen and (max-width: 1000px) {
+  .box {
+    padding: 1rem;
+    width: 80%;
+    height: 50%;
+  }
+
+  .img-taylor {
+    width: 100%;
+  }
+}

@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Falling Hearts Background</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family:
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          Arial;
+        /* background: #fff; */
+      }
+
+      /* ===== HEARTS BACKGROUND ===== */
+      .falling-hearts {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: 0; /* visible background layer */
+      }
+
+      .heart {
+        position: absolute;
+        top: -10vh;
+        animation: fall linear forwards;
+        user-select: none;
+        will-change: transform;
+      }
+
+      @keyframes fall {
+        0% {
+          transform: translateX(0) translateY(-10vh) rotate(var(--rot-start));
+          opacity: 1;
+        }
+        50% {
+          transform: translateX(var(--drift)) translateY(50vh)
+            rotate(calc(var(--rot-start) + 180deg));
+        }
+        100% {
+          transform: translateX(0) translateY(110vh) rotate(var(--rot-end));
+          opacity: 0.95;
+        }
+      }
+
+      /* Example content */
+      .content {
+        position: relative;
+        z-index: 1;
+        color: #000;
+        padding: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Background hearts layer -->
+    <div class="falling-hearts" id="hearts"></div>
+
+    <script>
+      const container = document.getElementById("hearts");
+
+      const COLORS = [
+        "#ff1a1a", // red
+        "#ff4da6", // pink
+        "#cc33ff", // purple
+        "#ff66cc", // soft pink
+        "#b300ff", // deep purple
+      ];
+
+      function createHeart() {
+        const heart = document.createElement("div");
+        heart.className = "heart";
+        heart.textContent = "❤";
+
+        // Faster + more variation
+        const size = Math.random() * 30 + 18;
+        const left = Math.random() * 100;
+        const duration = Math.random() * 3 + 3;
+        const drift = Math.random() * 120 - 60 + "px";
+        const rotStart = Math.random() * 360 + "deg";
+        const rotEnd = Math.random() * 360 + "deg";
+        const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+
+        heart.style.left = left + "vw";
+        heart.style.fontSize = size + "px";
+        heart.style.color = color;
+        heart.style.animationDuration = duration + "s";
+        heart.style.setProperty("--drift", drift);
+        heart.style.setProperty("--rot-start", rotStart);
+        heart.style.setProperty("--rot-end", rotEnd);
+
+        heart.addEventListener("animationend", () => {
+          heart.remove();
+        });
+
+        container.appendChild(heart);
+      }
+
+      // Balanced amount of hearts ❤️
+      setInterval(
+        () => {
+          createHeart();
+          createHeart();
+        },
+        window.innerWidth > 1280 ? 150 : 250,
+      ); // moderate spawn rate
+
+      // Smaller initial burst
+      for (let i = 0; i < 10; i++) {
+        setTimeout(createHeart, i);
+      }
+    </script>
+  </body>
+</html>
