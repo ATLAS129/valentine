@@ -2,7 +2,7 @@
   --main-bg-color: rgba(185, 74, 232, 0.9);
   --main-font-color: #540051;
   --secondary-font-color: #9c0296;
-  --main-button-color: #f7aca6;
+  --main-button-color: #a435d4;
 
   --second-main-bg-color: #f7aca6;
   --second-main-box-color: #fc9890;
@@ -37,6 +37,7 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: 1s all;
 }
 
 /* .box-2 {
@@ -56,8 +57,10 @@ body {
 } */
 
 .img-taylor {
+  max-width: 100%;
   width: 50%;
-  height: 50%;
+  height: auto;
+  display: block;
   object-fit: cover;
   border-radius: 5px;
 }
@@ -73,7 +76,7 @@ body {
 
 .continue {
   color: #fff;
-  font-size: 200%;
+  font-size: 1rem;
   width: 80%;
   height: 20%;
   background-color: var(--main-button-color);
@@ -91,11 +94,32 @@ body {
   transform: scale(1.05);
 }
 
+.animated {
+  /* Apply the animation */
+  animation-name: fadein; /* Name of the @keyframes rule */
+  animation-duration: 1s; /* Duration of the animation */
+  animation-timing-function: ease-out; /* Speed curve of the animation */
+  animation-fill-mode: forwards; /* Ensure the element stays visible after the animation */
+}
+
+@keyframes fadein {
+  /* Initial state: completely transparent and slightly scaled down */
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  /* Final state: fully visible and normal size */
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 @media screen and (max-width: 1000px) {
   .box {
     padding: 1rem;
     width: 80%;
-    height: 50%;
+    height: 60%;
   }
 
   .img-taylor {
